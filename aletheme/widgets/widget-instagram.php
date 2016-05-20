@@ -11,7 +11,7 @@ class Aletheme_Instagram_Widget extends WP_Widget
 		/* Widget control settings. */
 		$control_ops = array('width' => 300, 'height' => 350);
 		/* Create the widget. */
-		$this->WP_Widget( 'Aletheme_Instagram_Widget-widget', 'Aletheme Instagram', $widget_ops, $control_ops);
+		parent::__construct( 'Aletheme_Instagram_Widget-widget', 'Aletheme Instagram', $widget_ops, $control_ops);
 		
 		$this->cache_key = 'alethemeinstagramcache';
 	}

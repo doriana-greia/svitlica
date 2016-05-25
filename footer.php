@@ -1,49 +1,56 @@
     <!-- Footer -->
-    <nav class="footer-menu <?php if($post->post_type == "gallery" and !is_single()) { echo""; } elseif(is_page_template('template-contact.php') or is_page_template('template-about.php') or is_404() or is_page_template('template-award.php') or is_page_template('page-home.php')  or is_page_template('template-press.php')){  echo ""; } else { echo "no-fixed";}    ?>">
 
-        <!-- Social -->
-        <ul class="left">
-            <?php if(ale_get_option('fb')){ echo '<li class="facebook"><a href="'.ale_get_option('fb').'" rel="external"></a></li>'; } ?>
-            <?php if(ale_get_option('twi')){ echo '<li class="twitter"><a href="'.ale_get_option('twi').'" rel="external"></a></li>'; } ?>
-            <?php if(ale_get_option('gog')){ echo '<li class="google"><a href="'.ale_get_option('gog').'" rel="external"></a></li>'; } ?>
-            <?php if(ale_get_option('pint')){ echo '<li class="pinterest"><a href="'.ale_get_option('pint').'" rel="external"></a></li>'; } ?>
-            <?php if(ale_get_option('flickr')){ echo '<li class="flickr"><a href="'.ale_get_option('flickr').'" rel="external"></a></li>'; } ?>
-            <?php if(ale_get_option('linked')){ echo '<li class="linkedin"><a href="'.ale_get_option('linked').'" rel="external"></a></li>'; } ?>
-            <?php if(ale_get_option('insta')){ echo '<li class="instagram"><a href="'.ale_get_option('insta').'" rel="external"></a></li>'; } ?>
-            <?php if(ale_get_option('emailcont')){ echo '<li class="mail"><a href="mailto:'.ale_get_option('emailcont').'" rel="external"></a></li>'; } ?>
-            <?php if(ale_get_option('rssicon')){?><li class="rss"><a href="<?php echo home_url(); ?>/feed" rel="external"></a></li><?php } ?>
-        </ul>
+    <footer>
+        <div class="container-fluid wraper">
+            <div class="row">
+                <div class="col-md-4">
+                    <a href="index.html" class="logo_footer"></a>
+                </div>
+                <div class="col-md-8">
+                    <menu>
+                        <input type="checkbox" class="menu-checkbox" id="menu-checkbox" />
+                        <nav role="navigation">
+                            <label for="menu-checkbox" class="toggle-button" data-open="Menu" data-close="close" onclick></label>
+                            <?php
+                            if ( has_nav_menu( 'footer_menu' ) ) {
+                                wp_nav_menu(array(
+                                    'theme_location'=> 'footer_menu',
+                                    'menu'			=> 'Footer Menu',
+                                    'menu_class'	=> 'footermenu cf main-menu-footer  clearfix  toggle-button-footer" data-open="menu" data-close="close',
+                                    'walker'		=> new Aletheme_Nav_Walker(),
+                                    'container'		=> '',
+                                ));
+                            }
+                            ?>
+                        </nav>
+                    </menu>
 
-        <?php if(is_page_template('page-home.php')){ ?>
-        <!-- Footer Menu -->
-        <div class="center">
-            <ul class="nav">
-                <li><span><?php echo ale_get_option('footermenutitle'); ?></span>
-                    <?php
-                    if ( has_nav_menu( 'footer_menu' ) ) {
-                        wp_nav_menu(array(
-                            'theme_location'=> 'footer_menu',
-                            'menu'			=> 'Footer Menu',
-                            'menu_class'	=> 'footermenu cf',
-                            'walker'		=> new Aletheme_Nav_Walker(),
-                            'container'		=> '',
-                        ));
-                    }
-                    ?>
-                </li>
-            </ul>
+                </div>
+            </div><!-- /.row -->
+            <div class="row">
+                <div class="social">
+                    <ul>
+                        <li>
+                            <a class="plus-google" href="https://plus.google.com"></a>
+                        </li>
+                        <li>
+                            <a class="instagram" href="https://www.instagram.com/"></a>
+                        </li>
+                        <li>
+                            <a class="facebook" href="https://www.facebook.com/"></a>
+                        </li>
+                        <li>
+                            <a class="twitter" href="https://twitter.com/"></a>
+                        </li>
+                    </ul>
+                </div><!-- /.social -->
+            </div><!-- /.row -->
+
+
         </div>
-        <?php } ?>
+        <!-- Scripts -->
+        <?php wp_footer(); ?>
+    </footer>
 
-        <!-- Copy -->
-        <?php if (ale_get_option('copyrights')) : ?>
-            <p class="right"><?php echo ale_option('copyrights'); ?></p>
-        <?php else: ?>
-            <p class="right">&copy; <?php _e('2013 ALL RIGHTS RESERVED', 'aletheme')?></p>
-        <?php endif; ?>
-
-    </nav>
-    <!-- Scripts -->
-    <?php wp_footer(); ?>
 </body>
 </html>

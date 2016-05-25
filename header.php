@@ -18,66 +18,6 @@
 
 <body <?php if(is_page_template('page-home.php')){ body_class('home'); } if(is_page_template('template-contact.php')){ body_class('contact-page'); } if(is_page_template('template-about.php')){ body_class('about-page'); } if(is_post_type_archive('rooms')){ body_class('rooms-page'); } if(is_post_type_archive('services')){body_class('services_page'); } if(is_blog()){ body_class('events'); } else { body_class(); } ?> >
 
-<?php /*?>
-    <!-- Header -->
-    <nav class="main-menu">
-        <div class="menu-align">
-            <!-- Main Menu Left -->
-            <?php
-            if ( has_nav_menu( 'header_left_menu' ) ) {
-                wp_nav_menu(array(
-                    'theme_location'=> 'header_left_menu',
-                    'menu'			=> 'Header Left Menu',
-                    'menu_class'	=> 'menu menu-left cf',
-                    'walker'		=> new Aletheme_Nav_Walker(),
-                    'container'		=> '',
-                ));
-            }
-            ?>
-
-            <!-- Logo -->
-            <ul class="logo">
-                <?php if(ale_get_option('sitelogo')){ ?>
-                    <a href="<?php echo home_url(); ?>/" class="customlogo"><img src="<?php echo ale_get_option('sitelogo'); ?>" /></a>
-                <?php } else { ?>
-                    <a href="<?php echo home_url(); ?>/" class="alelogo"><?php echo bloginfo('name'); ?></a>
-                <?php } ?>
-            </ul>
-
-
-
-            <!-- Main Menu Right -->
-            <?php
-            if ( has_nav_menu( 'header_right_menu' ) ) {
-                wp_nav_menu(array(
-                    'theme_location'=> 'header_right_menu',
-                    'menu'			=> 'Header Right Menu',
-                    'menu_class'	=> 'menu menu-right cf',
-                    'walker'		=> new Aletheme_Nav_Walker(),
-                    'container'		=> '',
-                ));
-            }
-            ?>
-
-            <!-- DropDown -->
-            <div class="menu-click-drop">
-                <a><?php _e('MENU','aletheme'); ?></a>
-
-                <?php
-                if ( has_nav_menu( 'mobile_menu' ) ) {
-                    wp_nav_menu(array(
-                        'theme_location'=> 'mobile_menu',
-                        'menu'			=> 'Mobile Menu',
-                        'menu_class'	=> 'dropdown-menu cf',
-                        'walker'		=> new Aletheme_Nav_Walker(),
-                        'container'		=> '',
-                    ));
-                }
-                ?>
-            </div>
-        </div>
-    </nav>
- <?php */ ?>
 <header>
 
     <div class="top-line">
@@ -100,14 +40,17 @@
                         <input type="checkbox" class="menu-checkbox" id="menu-checkbox" />
                         <nav role="navigation">
                             <label for="menu-checkbox" class="toggle-button" data-open="Menu" data-close="close" onclick></label>
-                            <ul class="main-menu nav navbar-right navbar-nav clearfix">
-                                <li><a href="">Контакти</a></li>
-                                <li><a href="">Події</a></li>
-                                <li><a href="">Кімнати</a></li>
-                                <li><a href="">Послуги</a></li>
-                                <li><a href="">Про Нас</a></li>
-                                <li><a href="">Головна</a></li>
-                            </ul>
+                            <?php
+                            if ( has_nav_menu( 'header_right_menu' ) ) {
+                                wp_nav_menu(array(
+                                    'theme_location'=> 'header_right_menu',
+                                    'menu'			=> 'Header Right Menu',
+                                    'menu_class'	=> 'menu menu-right cf main-menu nav navbar-right navbar-nav clearfix',
+                                    'walker'		=> new Aletheme_Nav_Walker(),
+                                    'container'		=> '',
+                                ));
+                            }
+                            ?>
                         </nav>
                     </menu>
                 </div>

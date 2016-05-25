@@ -37,6 +37,12 @@ function aletheme_get_options() {
                         "std" => "",
                         "type" => "upload");
 
+    $options[] = array( "name" => "Site titel tizer",
+        "desc" => "Insert the Site titel tizer",
+        "id" => "ale_titel_tizer",
+        "std" => "Ми будемо раді бачити вас у нашому Реколекційно-Відпочинковому Центрі Львівської Архиєпархії Української Греко-Католицької Церкви",
+        "type" => "text");
+
     $options[] = array( 'name' => "Manage Background",
                         'desc' => "Select the background color, or upload a custom background image. Default background is the #f5f5f5 color",
                         'id' => 'ale_background',

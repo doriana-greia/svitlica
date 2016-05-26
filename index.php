@@ -124,14 +124,9 @@
     <div class="main">
         <div class="container-fluid wraper">
             <div class="row">
+                
                 <?php echo get_breadcrumbs(); ?>
-                <!--
-                <div class="breadcrumbs">
-                    <a href="#">Головна</a>
-                    <div class="arow">></div>
-                    <a href="#">Події</a>
-                </div>
-                <!--- --->
+
             </div><!-- /.row -->
         </div>
         <section class="main-ewents">

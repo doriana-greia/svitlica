@@ -37,6 +37,12 @@ function aletheme_get_options() {
                         "std" => "",
                         "type" => "upload");
 
+    $options[] = array( "name" => "Site Footer Logo",
+        "desc" => "Upload or put the site footer logo link (Default logo size: 133-52px)",
+        "id" => "ale_footer_sitelogo",
+        "std" => "",
+        "type" => "upload");
+
     $options[] = array( "name" => "Site titel tizer",
         "desc" => "Insert the Site titel tizer",
         "id" => "ale_titel_tizer",

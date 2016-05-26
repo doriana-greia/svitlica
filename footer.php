@@ -4,7 +4,11 @@
         <div class="container-fluid wraper">
             <div class="row">
                 <div class="col-md-4">
-                    <a href="index.html" class="logo_footer"></a>
+                    <?php if(ale_get_option('footer_sitelogo')){ ?>
+                        <a href="<?php echo home_url(); ?>/" class="customlogo"><img src="<?php echo ale_get_option('footer_sitelogo'); ?>" /></a>
+                    <?php } else { ?>
+                        <a href="<?php echo home_url(); ?>" class="logo"></a>
+                    <?php } ?>
                 </div>
                 <div class="col-md-8">
                     <menu>

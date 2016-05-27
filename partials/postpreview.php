@@ -13,7 +13,7 @@
                                  else  {?>
                                      <img src="http://placehold.it/299x291" alt="ewent-img">
                                  <?php }?>
-                            
+
                             <div class="data-ewents">
                                 <div class="data-ewents-content">
                                     <p class=""><?php echo get_post_meta($post->ID , 'date', true);?></p>

@@ -1,5 +1,6 @@
 <?php get_header(); ?>
     <!-- Content -->
+<?php /* ?>
     <div class="blog-center-align">
 
         <!-- Blog Caption -->
@@ -118,4 +119,22 @@
         </div>
 
     </div>
+ <?php */ ?>
+
+    <div class="main">
+        <div class="container-fluid wraper">
+            <div class="row">
+
+                <?php echo get_breadcrumbs(); ?>
+
+                <?php if (have_posts()) : while (have_posts()) : the_post(); ?>
+                    <?php ale_part('postpreview' );?>
+                <?php endwhile; else: ?>
+                    <?php ale_part('notfound')?>
+                <?php endif; ?>
+
+            </div><!-- /.row -->
+        </div>
+
+    </div><!-- /.main -->
 <?php get_footer(); ?>

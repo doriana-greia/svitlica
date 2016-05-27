@@ -104,8 +104,26 @@ function aletheme_get_options() {
                         "std" => "",
                         "type" => "text");
 
-    $options[] = array( "name" => "Typography",
-                        "type" => "heading");
+    $options[] = array("name" => "Post Slider",
+                       "type" => "heading");
+
+    $options[] = array( "name" => "Blog Slider slug 1",
+                        "desc" => "Загрузіть зображення.",
+                        "id" => "ale_1_img",
+                        "std" => "",
+                        "type" => "upload");
+
+    $options[] = array( "name" => "Blog Slider time 1",
+                        "desc" => "Загрузіть зображення.",
+                        "id" => "ale_2_img",
+                        "std" => "",
+                        "type" => "upload");
+
+    $options[] = array( "name" => "Blog Slider time 1",
+                        "desc" => "Загрузіть зображення.",
+                        "id" => "ale_3_img",
+                        "std" => "",
+                        "type" => "upload");
 
     $options[] = array( "name" => "Select the body Font from Google Library",
                         "desc" => "The default Font is - Raleway",
@@ -788,24 +806,12 @@ function aletheme_get_images_sizes() {
                 'height'    => 267,
                 'crop'      => true,
             ),
-            array(
-                'name'      => 'gallery-mini',
-                'width'     => 100,
-                'height'    => 67,
-                'crop'      => true,
-            ),
-            array(
-                'name'      => 'gallery-big',
-                'width'     => 680,
-                'height'    => 9999,
-                'crop'      => false,
-            ),
         ),
         'post' => array(
             array(
-                'name'      => 'post-thumba',
-                'width'     => 475,
-                'height'    => 295,
+                'name'      => 'post-blogsize',
+                'width'     => 299,
+                'height'    => 291,
                 'crop'      => true,
             ),
         ),

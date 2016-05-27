@@ -124,174 +124,18 @@
     <div class="main">
         <div class="container-fluid wraper">
             <div class="row">
-                
+
                 <?php echo get_breadcrumbs(); ?>
+
+                <?php if (have_posts()) : while (have_posts()) : the_post(); ?>
+                    <?php ale_part('postpreview' );?>
+                <?php endwhile; else: ?>
+                    <?php ale_part('notfound')?>
+                <?php endif; ?>
 
             </div><!-- /.row -->
         </div>
-        <section class="main-ewents">
-            <div class="container-fluid wraper">
-                <div class="row">
-                    <div class="ewents-box-wrap">
-                        <div class="ewents-box clearfix">
-                            <div class="col-md-4 col-sm-4  pl-0">
-                                <div class="ewents-img">
-                                    <img src="img/ewents/ewent_1.jpg" alt="ewent-img">
-                                    <div class="data-ewents">
-                                        <div class="data-ewents-content">
-                                            <p class="">Сб, 22 Грудня</p>
-                                            <p class="">11:30 - 16:00</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-8 col-sm-8">
-                                <div class="ewents-description">
-                                    <h4><a href="#">готуючись до Різдва</a></h4>
-                                    <p>20-22 грудня 2013 р. в Реколекційно-відпочинковому Центрі «Світлиця», працівники та викладачі Українського Католицького Університету мали змогу робити свої реколекції, готуючись до Різдва ГНІХ.</p>
-                                </div><!-- /.ewents-description -->
-                                <div class="btn_grup">
-                                    <a href="#" class="btn-red-light">
-                                        Зареєструватись
-                                    </a><!-- /.btn-red-light -->
-
-                                    <a href="#" class="btn-grey">
-                                        Дізнатись більше
-                                    </a><!-- /.btn-gre -->
-                                </div>
-                            </div>
-                        </div>
-                    </div><!-- /.ewents-box-wrap -->
-
-                    <div class="ewents-box-wrap">
-                        <div class="ewents-box clearfix">
-                            <div class="col-md-4 col-sm-4 pl-0">
-                                <div class="ewents-img">
-                                    <img src="img/ewents/ewent_2.jpg" alt="ewent-img">
-                                    <div class="data-ewents">
-                                        <div class="data-ewents-content">
-                                            <p class="">Сб, 22 Грудня</p>
-                                            <p class="">11:30 - 16:00</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-8">
-                                <div class="ewents-description">
-                                    <h4>підтримали учасників Львівського Євромайдану.</h4>
-                                    <p>Третього грудня працівники Реколекційного Центру «Світлиця» приєдналися до діючої акції протесту України на майдані Львова.</p>
-                                </div><!-- /.ewents-description -->
-                                <div class="btn_grup">
-                                    <a href="#" class="btn-red-light">
-                                        Зареєструватись
-                                    </a><!-- /.btn-red-light -->
-
-                                    <a href="#" class="btn-grey">
-                                        Дізнатись більше
-                                    </a><!-- /.btn-gre -->
-                                </div>
-                            </div>
-                        </div>
-                    </div><!-- /.ewents-box-wrap -->
-
-                    <div class="ewents-box-wrap">
-                        <div class="ewents-box clearfix">
-                            <div class="col-md-4 col-sm-4  pl-0">
-                                <div class="ewents-img">
-                                    <img src="img/ewents/ewent_3.jpg" alt="ewent-img">
-                                    <div class="data-ewents">
-                                        <div class="data-ewents-content">
-                                            <p class="">Сб, 22 Грудня</p>
-                                            <p class="">11:30 - 16:00</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-8 col-sm-8">
-                                <div class="ewents-description">
-                                    <h4>РАЗОМ З ПЕТРОМ  ЗА ІСУСОМ</h4>
-                                    <p>6 – 8 грудня у Реколекційно – Відпочинковому Центрі «Світлиця» відбулась чергова формаційна зустріч «Відкрий двері Христові» для дітей зі священичих родин  Львівської архиєпархії .</p>
-                                </div><!-- /.ewents-description -->
-                                <div class="btn_grup">
-                                    <a href="#" class="btn-red-light">
-                                        Зареєструватись
-                                    </a><!-- /.btn-red-light -->
-
-                                    <a href="#" class="btn-grey">
-                                        Дізнатись більше
-                                    </a><!-- /.btn-gre -->
-                                </div>
-                            </div>
-                        </div>
-                    </div><!-- /.ewents-box-wrap -->
-
-
-                    <div class="ewents-box-wrap">
-                        <div class="ewents-box clearfix">
-                            <div class="col-md-4 col-sm-4  pl-0">
-                                <div class="ewents-img">
-                                    <img src="img/ewents/ewent_4.jpg" alt="ewent-img">
-                                    <div class="data-ewents">
-                                        <div class="data-ewents-content">
-                                            <p class="">Сб, 22 Грудня</p>
-                                            <p class="">11:30 - 16:00</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-8 col-sm-8">
-                                <div class="ewents-description">
-                                    <h4>четверті спільні реколекції</h4>
-                                    <p>11 – 15 листопада 2013 року в реколекційному центрі Львівської архиєпархії УГКЦ, що в Брюховичах біля Львова, відбулися четверті спільні реколекції для єпископів Української Греко-Католицької Церкви, Римо-Католицької Церкви в Україні та Мукачівської греко-католицької єпархії.</p>
-                                </div><!-- /.ewents-description -->
-                                <div class="btn_grup">
-                                    <a href="#" class="btn-red-light">
-                                        Зареєструватись
-                                    </a><!-- /.btn-red-light -->
-
-                                    <a href="#" class="btn-grey">
-                                        Дізнатись більше
-                                    </a><!-- /.btn-gre -->
-                                </div>
-                            </div>
-                        </div>
-                    </div><!-- /.ewents-box-wrap -->
-
-
-                    <div class="ewents-box-wrap">
-                        <div class="ewents-box clearfix">
-                            <div class="col-md-4 col-sm-4  pl-0">
-                                <div class="ewents-img">
-                                    <img src="img/ewents/ewent_5.jpg" alt="ewent-img">
-                                    <div class="data-ewents">
-                                        <div class="data-ewents-content">
-                                            <p class="">Сб, 22 Грудня</p>
-                                            <p class="">11:30 - 16:00</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-8 col-sm-8">
-                                <div class="ewents-description">
-                                    <h4>реколекції для сестер Селезіянок</h4>
-                                    <p>З 6 по 13 вересня у Реколекційно-відпочинковому Центрі «Світлиця» відбуваються реколекції для сестер Селезіянок з усієї Європи і близького Сходу.</p>
-                                </div><!-- /.ewents-description -->
-                                <div class="btn_grup">
-                                    <a href="#" class="btn-red-light">
-                                        Зареєструватись
-                                    </a><!-- /.btn-red-light -->
-
-                                    <a href="#" class="btn-grey">
-                                        Дізнатись більше
-                                    </a><!-- /.btn-gre -->
-                                </div>
-                            </div>
-                        </div>
-                    </div><!-- /.ewents-box-wrap -->
-
-                </div><!-- /.row -->
-            </div>
-        </section>
+        
     </div><!-- /.main -->
 
 <?php get_footer(); ?>

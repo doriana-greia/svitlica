@@ -1378,7 +1378,7 @@ function aletheme_register_required_plugins() {
 /**
  *
  * Add of image is in single-post
- * 
+ *
  */
 
 function true_include_myuploadscript() {
@@ -1389,7 +1389,7 @@ function true_include_myuploadscript() {
 		wp_enqueue_media();
 	}
 
-	wp_enqueue_script( 'myuploadscript', get_stylesheet_directory_uri() . '/js/upload-image.js', array('jquery'), null, false );
+	wp_enqueue_script( 'myuploadscript', get_stylesheet_directory_uri() . '/js/upload-images.js', array('jquery'), null, false );
 }
 
 add_action( 'admin_enqueue_scripts', 'true_include_myuploadscript' );

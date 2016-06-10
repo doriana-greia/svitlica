@@ -1,10 +1,9 @@
 /**
- * Created by Home on 08.06.2016.
+ * JAVASCRIPT -UPLOAD-IMAGES
  */
 jQuery(function($){
     /*
-     * действие при нажатии на кнопку загрузки изображения
-     * вы также можете привязать это действие к клику по самому изображению
+     * action at pressure on the button of load of image
      */
     $('.upload_image_button').click(function(){
         var send_attachment_bkp = wp.media.editor.send.attachment;
@@ -18,8 +17,7 @@ jQuery(function($){
         return false;
     });
     /*
-     * удаляем значение произвольного поля
-     * если быть точным, то мы просто удаляем value у input type="hidden"
+     * delete the value of the arbitrary field if to be exact, we simply delete value at input type="hidden"
      */
     $('.remove_image_button').click(function(){
         var r = confirm("Уверены?");

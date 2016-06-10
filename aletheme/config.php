@@ -815,14 +815,6 @@ function aletheme_get_images_sizes() {
                 'crop'      => true,
             ),
         ),
-        'attributes' => array(
-            array(
-                'name'      => 'attributes-size',
-                'width'     => 299,
-                'height'    => 291,
-                'crop'      => true,
-            ),
-        ),
         
     );
 }

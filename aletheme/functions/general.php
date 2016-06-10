@@ -1227,10 +1227,6 @@ function ale_trim_excerpt($length) {
     return $text;
 }
 
-
-
-
-
 // Breadcrumbs Custom Function
 function get_breadcrumbs() {
 	$showOnHome = 1; // 1 - показывать "хлебные крошки" на главной странице, 0 - не показывать
@@ -1378,3 +1374,109 @@ function aletheme_register_required_plugins() {
     tgmpa( $plugins, $config );
 
 }
+
+/**
+ *
+ * Add of image is in single-post
+ * 
+ */
+
+function true_include_myuploadscript() {
+
+// wp_enqueue_script('jquery');
+// add javascript, loader of images Wordpress
+	if ( ! did_action( 'wp_enqueue_media' ) ) {
+		wp_enqueue_media();
+	}
+
+	wp_enqueue_script( 'myuploadscript', get_stylesheet_directory_uri() . '/js/upload-image.js', array('jquery'), null, false );
+}
+
+add_action( 'admin_enqueue_scripts', 'true_include_myuploadscript' );
+
+//PHP-function add fields form
+function true_image_uploader_field( $name, $value = '', $w = 115, $h = 90) {
+	$default = get_stylesheet_directory_uri() . '/img/no-image.png';
+	if( $value ) {
+		$image_attributes = wp_get_attachment_image_src( $value, array($w, $h) );
+		$src = $image_attributes[0];
+	} else {
+		$src = $default;
+	}
+	echo '
+<div>
+<img data-src="' . $default . '" src="' . $src . '" width="' . $w . 'px" height="' . $h . 'px" />
+<div>
+<input type="hidden" name="' . $name . '" id="' . $name . '" value="' . $value . '" />
+<button type="submit" class="upload_image_button button">Загрузить</button>
+<button type="submit" class="remove_image_button button">&times;</button>
+</div>
+</div>
+';
+}
+
+/*
+* Add metaboks
+*/
+function true_meta_boxes_u() {
+	add_meta_box('truediv', 'Додати зображення', 'true_print_box_u', 'post', 'normal', 'high');
+}
+
+add_action( 'admin_menu', 'true_meta_boxes_u' );
+
+/*
+* Fill metaboks
+*/
+function true_print_box_u($post) {
+	if( function_exists( 'true_image_uploader_field' ) ) {
+		true_image_uploader_field( 'uploader_custom', get_post_meta($post->ID, 'uploader_custom',true) );
+		true_image_uploader_field( 'uploader_custom1', get_post_meta($post->ID, 'uploader_custom1',true) );
+		true_image_uploader_field( 'uploader_custom2', get_post_meta($post->ID, 'uploader_custom2',true) );
+
+	}
+}
+
+/*
+* Save information arbitrary field
+*/
+function true_save_box_data_u( $post_id ) {
+	if ( defined('DOING_AUTOSAVE') && DOING_AUTOSAVE )
+		return $post_id;
+	update_post_meta( $post_id, 'uploader_custom', $_POST['uploader_custom']);
+	update_post_meta( $post_id, 'uploader_custom1', $_POST['uploader_custom1']);
+	update_post_meta( $post_id, 'uploader_custom2', $_POST['uploader_custom2']);
+	return $post_id;
+}
+
+add_action('save_post', 'true_save_box_data_u');
+
+function true_add_options_page_u() {
+	if ( isset( $_GET['page'] ) == 'uplsettings' ) {
+		if ( 'save' == isset( $_REQUEST['action'] ) ) {
+			update_option('uploader_custom', $_REQUEST[ 'uploader_custom' ]);
+			header("Location: ". site_url() ."/wp-admin/options-general.php?page=uplsettings&saved=true");
+			die;
+		}
+	}
+	add_submenu_page('options-general.php','Дополнительные настройки','Настройки','edit_posts', 'uplsettings', 'true_print_options_u');
+}
+
+function true_print_options_u() {
+	if ( isset( $_REQUEST['saved'] ) ){
+		echo '<div class="updated"><p>Сохранено.</p></div>';
+	}
+	?><div class="wrap">
+	<form method="post">
+		<?php
+		if( function_exists( 'true_image_uploader_field' ) ) {
+			true_image_uploader_field('uploader_custom', get_option('uploader_custom'));
+		}
+		?><p class="submit">
+			<input name="save" type="submit" class="button-primary" value="Сохранить изменения" />
+			<input type="hidden" name="action" value="save" />
+		</p>
+	</form>
+
+	</div><?php
+}
+?>

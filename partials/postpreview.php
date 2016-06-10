@@ -35,7 +35,7 @@
                                 Зареєструватись
                             </a><!-- /.btn-red-light -->
 
-                            <a href="#" class="btn-grey">
+                            <a href="<?php the_permalink();?>" class="btn-grey">
                                 Дізнатись більше
                             </a><!-- /.btn-gre -->
                         </div>

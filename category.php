@@ -125,7 +125,9 @@
         <div class="container-fluid wraper">
             <div class="row">
 
-                <?php echo get_breadcrumbs(); ?>
+                <div class="breadcrumbs">
+                    <?php echo get_breadcrumbs(); ?>
+                </div>
 
                 <?php if (have_posts()) : while (have_posts()) : the_post(); ?>
                     <?php ale_part('postpreview' );?>

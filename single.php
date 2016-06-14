@@ -39,7 +39,6 @@
                         <div class="col-md-4 col-sm-4">
                             <div class="ewents-info-box">
                                 <div class="ewents-info-img">
-
                                     <?php $attachment_id = get_post_meta($post->ID, 'uploader_custom',true);
                                     $attributes = wp_get_attachment_image_src( $attachment_id, array(299,291) );
                                     $default = get_stylesheet_directory_uri() . '/img/no-image.png';
@@ -49,14 +48,12 @@
                                         echo '<img src="' . $default. '"  alt="" />';
 
                                     }?>
-
                                 </div>
                             </div>
                         </div>
                         <div class="col-md-4 col-sm-4">
                             <div class="ewents-info-box">
                                 <div class="ewents-info-img">
-
                                     <?php $attachment_id = get_post_meta($post->ID, 'uploader_custom1',true);
                                     $attributes = wp_get_attachment_image_src( $attachment_id, array(299,291) );
                                     $default = get_stylesheet_directory_uri() . '/img/no-image.png';
@@ -73,7 +70,6 @@
                         <div class="col-md-4 col-sm-4">
                             <div class="ewents-info-box">
                                 <div class="ewents-info-img">
-
                                     <?php $attachment_id = get_post_meta($post->ID, 'uploader_custom2',true);
                                     $attributes = wp_get_attachment_image_src( $attachment_id, array(299,291) );
                                     $default = get_stylesheet_directory_uri() . '/img/no-image.png';

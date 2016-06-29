@@ -9,11 +9,9 @@ function ale_exclude_search_pages($query) {
 	if ($query->is_search) {
 		$query->set('post_type', 'post');
 	}
-
 	return $query;
 }
 if( !is_admin() ) add_filter('pre_get_posts', 'ale_exclude_search_pages');
-
 /**
  * Load needed options & translations into template.
  */
@@ -33,24 +31,21 @@ function ale_init_js_vars() {
 	);
 }
 add_action('wp_print_scripts', 'ale_init_js_vars');
-
 /**
  * Enqueue Theme Styles
  */
 function ale_enqueue_styles() {
-
 	// add general css file
-
     wp_register_style( 'aletheme_general_css', THEME_URL . '/css/general.css', array(), ALETHEME_THEME_VERSION, 'all');
     wp_register_style( 'aletheme_owl_carousel', THEME_URL . '/js/libs/owl/assets/owl.carousel.css', array(), ALETHEME_THEME_VERSION, 'all');
+    wp_register_style( 'aletheme_magnific-popup', THEME_URL . '/js/libs/magnific/magnific-popup.css', array(), ALETHEME_THEME_VERSION, 'all');
+    wp_register_style( 'aletheme_font-awesome', THEME_URL . '/fonts/font-awesome/css/font-awesome.min.css', array(), ALETHEME_THEME_VERSION, 'all');
+    wp_enqueue_style('aletheme_font-awesome');
     wp_enqueue_style('aletheme_general_css');
     wp_enqueue_style('aletheme_owl_carousel');
-
-
+    wp_enqueue_style('aletheme_magnific-popup');
 }
 add_action( 'wp_enqueue_scripts', 'ale_enqueue_styles' );
-
-
 /**
  * Custom Css
  */
@@ -59,8 +54,6 @@ function ale_customcss(){
     if(ale_get_option('customcsscode')){ echo '<style type="text/css">'.ale_get_option('customcsscode').'</style>';}
 }
 add_action('wp_head', 'ale_customcss');
-
-
 /**
  * Check if is Blog
  */
@@ -69,31 +62,25 @@ function is_blog () {
     $posttype = get_post_type($post );
     return ( ((is_archive()) || (is_author()) || (is_category()) || (is_home()) || (is_single()) || (is_tag())) && ( $posttype == 'post')  ) ? true : false ;
 }
-
 /**
  * Enqueue Theme Scripts
  */
 function ale_enqueue_scripts() {
-
 	// add html5 for old browsers.
 	wp_register_script( 'html5-shim', 'http://html5shim.googlecode.com/svn/trunk/html5.js', array( 'jquery' ), ALETHEME_THEME_VERSION, false );
 	// add modernizr
 	wp_register_script( 'ale_modernizr', THEME_URL . '/js/libs/modernizr-2.5.3.min.js', array( 'jquery' ), ALETHEME_THEME_VERSION, false );
-
     wp_register_script( 'ale_common', THEME_URL . '/js/common.js', array( 'jquery' ), ALETHEME_THEME_VERSION, true );
     wp_register_script( 'ale_libs', THEME_URL . '/js/libs.js', array( 'jquery' ), ALETHEME_THEME_VERSION, true );
-
 	wp_enqueue_script( 'jquery-form' );
 	wp_enqueue_script( 'ale_modernizr' );
 	wp_enqueue_script( 'html5-shim' );
 	wp_enqueue_script( 'ale_libs' );
     wp_enqueue_script( 'ale_common' );
-
 }
 add_action( 'wp_enqueue_scripts', 'ale_enqueue_scripts');
-
 /**
- * Add header information 
+ * Add header information
  */
 function ale_head() {
 	?>
@@ -104,8 +91,6 @@ function ale_head() {
 	<?php
 }
 add_action('wp_head', 'ale_head');
-
-
 /**
  * Comment callback function
  * @param object $comment
@@ -115,7 +100,6 @@ add_action('wp_head', 'ale_head');
 function aletheme_comment_default($comment, $args, $depth) {
     $GLOBALS['comment'] = $comment;
     extract($args, EXTR_SKIP);
-
     if ( 'div' == $args['style'] ) {
         $tag = 'div';
         $add_below = 'comment';
@@ -163,11 +147,10 @@ function aletheme_comment_default($comment, $args, $depth) {
 		<?php endif; ?>
     <?php
 }
-
 /**
  * Custom password form
  * @global object $post
- * @return string 
+ * @return string
  */
 function aletheme_password_form() {
 	global $post;
@@ -180,10 +163,9 @@ function aletheme_password_form() {
 	return $html;
 }
 add_filter( 'the_password_form', 'aletheme_password_form' );
-
 /**
  * Add footer information
- * Social Services Init 
+ * Social Services Init
  */
 function ale_footer() {
 	$info = trim(ale_get_option('footer_info'));
@@ -194,16 +176,13 @@ function ale_footer() {
 	<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
 <?php
 }
-
 add_action('wp_footer', 'ale_footer');
-
 /**
  * Add Google Analytics Code
  */
 function ale_google_analytics() {
     $analytics_id = trim(ale_get_option('ga'));
     $domain_name = $_SERVER['SERVER_NAME'];
-
     if ($analytics_id) {
         if(ale_get_option('analyticstype')=='universal'){
             echo "\n\t<script>\n";
@@ -225,18 +204,17 @@ function ale_google_analytics() {
     }
 }
 add_action('wp_footer', 'ale_google_analytics');
-
 /**
- * Add Open Graph Tags to <head> 
+ * Add Open Graph Tags to <head>
  */
 function ale_og_meta() {
 	if (ale_get_option('og_enabled')) {
-		
+
 	$og_type='article';
 	$og_locale = get_locale();
-	
+
 	$og_image = '';
-	
+
 	// single page
 	if (is_singular()) {
 		global $post;
@@ -247,23 +225,23 @@ function ale_og_meta() {
 		} else {
 			$og_desc = ale_truncate(strip_tags($post->post_content), 240, '...');
 		}
-		
+
 		$og_image = ale_get_og_meta_image();
-		
+
 		if (is_front_page()) {
 			$og_type = 'website';
 		}
-		
+
 	} else {
 		global $wp_query;
-		
+
 		$og_title = get_bloginfo('name');
 		$og_url = site_url();
 		$og_desc = get_bloginfo('description');
-		
+
 		if (is_front_page()) {
 			$og_type = 'website';
-			
+
 		} elseif (is_category()) {
 			$og_title = esc_attr(strip_tags(stripslashes(single_cat_title('', false))));
 			$term = $wp_query->get_queried_object();
@@ -272,7 +250,7 @@ function ale_og_meta() {
 			if ($cat_desc) {
 				$og_desc = $cat_desc;
 			}
-			
+
 		} elseif(is_tag()) {
 			$og_title = esc_attr(strip_tags(stripslashes(single_tag_title('', false))));
 			$term = $wp_query->get_queried_object();
@@ -281,20 +259,20 @@ function ale_og_meta() {
 			if (trim($tag_desc) != '') {
 				$og_desc = $tag_desc;
 			}
-			
-		} elseif (is_tax()) {	
+
+		} elseif (is_tax()) {
 			$og_title = esc_attr(strip_tags(stripslashes(single_term_title('', false))));
 			$term = $wp_query->get_queried_object();
 			$og_url = get_term_link($term, $term->taxonomy);
-			
+
 		} elseif(is_search()) {
 			$og_title = esc_attr(strip_tags(stripslashes(__('Search for', 'aletheme') . ' "' . get_search_query() . '"')));
 			$og_url = get_search_link();
-			
+
 		} elseif (is_author()) {
 			$og_title = esc_attr(strip_tags(stripslashes(get_the_author_meta('display_name', get_query_var('author')))));
 			$og_url = get_author_posts_url(get_query_var('author'), get_query_var('author_name'));
-			
+
 		} elseif (is_archive()) {
 			if (is_post_type_archive()) {
 				$og_title = esc_attr(strip_tags(stripslashes(post_type_archive_title('', false))));
@@ -309,17 +287,17 @@ function ale_og_meta() {
 				$og_title = esc_attr(strip_tags(stripslashes(get_query_var('year') . ' ' . __('Archives', 'aletheme'))));
 				$og_url = get_year_link(get_query_var('year'));
 			}
-			
+
 		} else {
 			// other situations
 		}
 	}
-	
+
 	if (!$og_desc) {
 		$og_desc = $og_title;
 	}
 	?>
-	
+
 	<?php if (ale_get_option('fb_id')) : ?>
 		<meta property="fb:app_id" content="<?php ale_option('fb_id')?>" />
 	<?php endif; ?>
@@ -329,17 +307,16 @@ function ale_og_meta() {
 	<meta property="og:locale" content="<?php echo $og_locale ?> " />
 	<meta property="og:site_name" content="<?php bloginfo('name') ?>" />
 	<meta property="og:title" content="<?php echo $og_title ?>" />
-	<meta property="og:url" content="<?php echo $og_url ?>" />	
+	<meta property="og:url" content="<?php echo $og_url ?>" />
 	<meta property="og:type" content="<?php echo $og_type ?>" />
 	<meta property="og:description" content="<?php echo $og_desc ?>" />
 	<?php }
 }
 add_action('wp_head', 'ale_og_meta');
-
 /**
  * Add OpenGraph attributes to html tag
  * @param type $output
- * @return string 
+ * @return string
  */
 function ale_add_opengraph_namespace($output) {
 	if (ale_get_option('og_enabled')) {
@@ -350,14 +327,13 @@ function ale_add_opengraph_namespace($output) {
 			$output = $output . ' xmlns:fb="http://ogp.me/ns/fb#"';
 		}
 	}
-	
+
 	return $output;
 }
 add_filter('language_attributes', 'ale_add_opengraph_namespace',9999);
-
 /**
- * Get image for Open Graph Meta 
- * 
+ * Get image for Open Graph Meta
+ *
  * @return string
  */
 function ale_og_meta_image() {
@@ -367,7 +343,7 @@ function ale_get_og_meta_image() {
 	global $post;
 	$thumbdone=false;
 	$og_image='';
-	
+
 	//Featured image
 	if (function_exists('get_post_thumbnail_id')) {
 		$attachment_id = get_post_thumbnail_id($post->ID);
@@ -376,7 +352,7 @@ function ale_get_og_meta_image() {
 			$thumbdone = true;
 		}
 	}
-	
+
 	//From post/page content
 	if (!$thumbdone) {
 		$image = ale_parse_first_image($post->post_content);
@@ -398,7 +374,7 @@ function ale_get_og_meta_image() {
 			}
 		}
 	}
-	
+
 	//From media gallery
 	if (!$thumbdone) {
 		$image = ale_get_first_attached_image($post->ID);
@@ -407,10 +383,9 @@ function ale_get_og_meta_image() {
 			$thumbdone = true;
 		}
 	}
-	
+
 	return $og_image;
 }
-
 /**
  * Load Post AJAX Hook
  */
@@ -433,34 +408,31 @@ function ale_load_post() {
 }
 add_action('wp_ajax_aletheme_load_post', 'ale_load_post');
 add_action('wp_ajax_nopriv_aletheme_load_post', 'ale_load_post');
-
-
-
 /**
  * AJAXify comments
  * @global object $user
  * @param int $comment_ID
- * @param int $comment_status 
+ * @param int $comment_status
  */
 function ale_post_comment_ajax($comment_ID, $comment_status) {
 	global $user;
     if(!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest') {
 		$comment = get_comment($comment_ID);
-		
-        switch($comment_status){  
-            case '0':  
-                //notify moderator of unapproved comment  
-                wp_notify_moderator($comment_ID);  
-            case '1': //Approved comment  
-                $post=&get_post($comment->comment_post_ID); //Notify post author of comment  
-                if ( get_option('comments_notify') && $comment->comment_approved && $post->post_author != $comment->user_id )  
-                    wp_notify_postauthor($comment_ID, $comment->comment_type);  
-                break;  
-            default:  
+
+        switch($comment_status){
+            case '0':
+                //notify moderator of unapproved comment
+                wp_notify_moderator($comment_ID);
+            case '1': //Approved comment
+                $post=&get_post($comment->comment_post_ID); //Notify post author of comment
+                if ( get_option('comments_notify') && $comment->comment_approved && $post->post_author != $comment->user_id )
+                    wp_notify_postauthor($comment_ID, $comment->comment_type);
+                break;
+            default:
                 echo json_encode(array(
 					'error' => 1,
 					'msg'	=> __('Something went wrong. Please refresh page and try again.', 'aletheme'),
-				));exit;				
+				));exit;
         }
 		// save cookie for non-logged user.
 		if ( !$user->ID ) {
@@ -469,25 +441,24 @@ function ale_post_comment_ajax($comment_ID, $comment_status) {
 			setcookie('comment_author_email_' . COOKIEHASH, $comment->comment_author_email, time() + $comment_cookie_lifetime, COOKIEPATH, COOKIE_DOMAIN);
 			setcookie('comment_author_url_' . COOKIEHASH, esc_url($comment->comment_author_url), time() + $comment_cookie_lifetime, COOKIEPATH, COOKIE_DOMAIN);
 		}
-		
+
 		// load a comment to variable
 		ob_start();
 		aletheme_comment($comment, array('max_depth' => 1), 1);
 		$html = ob_get_clean();
-		
+
 		echo json_encode(array(
 			'html'		=> $html,
 			'success'	=> 1,
 		));
 		exit;
-    }  
+    }
 }
 if( !is_admin() ) {
 	add_action('comment_post', 'ale_post_comment_ajax', 20, 2);
 }
-
 /**
- * Change Wordpress Login Logo 
+ * Change Wordpress Login Logo
  */
 function ale_login_logo() { ?>
     <style type="text/css">
@@ -511,16 +482,14 @@ function ale_login_logo() { ?>
     </style>
 <?php }
 add_action( 'login_enqueue_scripts', 'ale_login_logo' );
-
 /**
  * Change login logo URL
- * @return string 
+ * @return string
  */
 function ale_login_logo_url() {
     return home_url('/');
 }
 add_filter( 'login_headerurl', 'ale_login_logo_url' );
-
 /**
  * Change login logo title
  * @return string 

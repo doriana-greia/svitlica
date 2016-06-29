@@ -1403,13 +1403,15 @@ function true_image_uploader_field( $name, $value = '', $w = 115, $h = 90) {
 	} else {
 		$src = $default;
 	}
+	$button_uploading= get_stylesheet_directory_uri() . '/img/uploading.png';
+	$button_remove= get_stylesheet_directory_uri() . '/img/remove.png';
 	echo '
 <div>
 <img data-src="' . $default . '" src="' . $src . '" width="' . $w . 'px" height="' . $h . 'px" />
 <div>
 <input type="hidden" name="' . $name . '" id="' . $name . '" value="' . $value . '" />
-<button type="submit" class="upload_image_button button">Загрузить</button>
-<button type="submit" class="remove_image_button button">&times;</button>
+<img class="upload_image_button" src="' . $button_uploading . '" style = \'cursor: pointer;\' alt="Завантажити зображення" title="Завантажити зображення" />
+<img class="remove_image_button" src="' . $button_remove . '" style = \'cursor: pointer;\' alt="Видалити зображення" title="Видалити зображення" />
 </div>
 </div>
 ';
